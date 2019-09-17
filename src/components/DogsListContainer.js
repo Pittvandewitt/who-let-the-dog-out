@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import * as request from 'superagent'
-import SetDogObjects from '../actions/SetDogObjects'
+import { connect } from 'react-redux'
 import DogsList from './DogsList'
+import SetDogObjects from '../actions/SetDogObjects'
 
 class DogsListContainer extends Component {
 
@@ -16,7 +16,10 @@ class DogsListContainer extends Component {
 
         Promise.all(promises).then(responses => this.props.SetDogObjects(responses))
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        window.alert('An error occured while fetching data. Try reloading the page')
+        console.log(error)
+      })
   }
 
   render() {
@@ -25,9 +28,7 @@ class DogsListContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    dogs: state
-  }
+  return { dogs: state }
 }
 
 export default connect(mapStateToProps, { SetDogObjects })(DogsListContainer)
