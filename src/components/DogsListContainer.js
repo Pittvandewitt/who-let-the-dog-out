@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as request from 'superagent'
-import SetDogsList from '../actions/SetDogsList'
-import SetDogsImages from '../actions/SetDogsImages'
+import SetDogObjects from '../actions/SetDogObjects'
 import DogsList from './DogsList'
 
 class DogsListContainer extends Component {
 
   componentDidMount() {
     request('https://dog.ceo/api/breeds/list/all')
-      .then(data => this.props.SetDogsList(Object.keys(data.body.message)))
-      .then(dogslist => dogslist.payload.map(breed =>
-        request(`https://dog.ceo/api/breed/${encodeURIComponent(breed)}/images`)
-          .then(data => this.props.SetDogsImages(data.body.message, breed))))
+      .then(data => {
+        const promises = Object.keys(data.body.message).map(dog => {
+          return request(`https://dog.ceo/api/breed/${encodeURIComponent(dog)}/images`)
+            .then(data => ({ breed: dog, images: data.body.message }))
+        })
+
+        Promise.all(promises).then(responses => this.props.SetDogObjects(responses))
+      })
       .catch(error => console.log(error))
   }
 
   render() {
-    return <DogsList list={this.props.dogs} />
+    return this.props.dogs.length > 0 ? <DogsList list={this.props.dogs} /> : 'Loading...'
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    dogs: state.dogs,
-    images: state.dogs[1]
+    dogs: state
   }
 }
 
-export default connect(mapStateToProps, { SetDogsList, SetDogsImages })(DogsListContainer)
+export default connect(mapStateToProps, { SetDogObjects })(DogsListContainer)
