@@ -8,8 +8,7 @@ class DogsListContainer extends Component {
 
   componentDidMount() {
     request('https://dog.ceo/api/breeds/list/all')
-      .then(data => this.props.SetDogsList(Object.keys((data.body.message))))
-      .catch(error => console.log(error))
+      .then(data => this.props.SetDogsList(Object.keys(data.body.message)))
   }
 
   render() {
@@ -18,8 +17,9 @@ class DogsListContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("aaa",state.reducer)
-  return { dogs: state.reducer }
+  return {
+    dogs: state.dogs
+  }
 }
 
 export default connect(mapStateToProps, { SetDogsList })(DogsListContainer)
