@@ -6,7 +6,8 @@ export default class DogsList extends Component {
     return <div>
       <h1>Dogs List</h1>
       <ul>
-        {this.props.list !== null ? this.props.list.map(breed => <li>{breed}</li>) : 'Loading...'}
+        {console.log('stuff to log', this.props.list)}
+        {/* {this.props.list !== null ? this.props.list.map(breed => <li>{breed}</li>) : 'Loading...'} */}
       </ul>
     </div>
   }
