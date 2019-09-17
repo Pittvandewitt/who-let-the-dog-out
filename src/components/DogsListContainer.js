@@ -10,7 +10,9 @@ class DogsListContainer extends Component {
   componentDidMount() {
     request('https://dog.ceo/api/breeds/list/all')
       .then(data => this.props.SetDogsList(Object.keys(data.body.message)))
-      .then(data => data.message.map((breed, idx) => this.props.SetDogsImages(request(`https://dog.ceo/api/breed/${encodeURIComponent(breed)}/images`))))
+      .then(dogslist => dogslist.payload.map(breed =>
+        request(`https://dog.ceo/api/breed/${encodeURIComponent(breed)}/images`)
+          .then(data => this.props.SetDogsImages(data.body.message, breed))))
       .catch(error => console.log(error))
   }
 
@@ -22,8 +24,7 @@ class DogsListContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     dogs: state.dogs,
-    images: state.dogs[1],
-    isShown: false
+    images: state.dogs[1]
   }
 }
 

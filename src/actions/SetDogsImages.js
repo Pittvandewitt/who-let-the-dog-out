@@ -1,6 +1,7 @@
-export default function SetDogsImages(breedImages) {
+export default function SetDogsImages(breedImages, breed) {
   return {
     type: 'SET_DOG_IMAGES',
-    payload: breedImages.url
+    payload: breedImages,
+    breed: breed
   }
 }
