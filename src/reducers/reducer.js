@@ -1,3 +1,5 @@
+
+
 export default (state = [], action = {}) => {
   switch (action.type) {
     case 'SET_DOGSLIST':
