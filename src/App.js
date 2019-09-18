@@ -6,9 +6,6 @@ import DogBreedsImagesContainer from './components/DogBreedsImagesContainer';
 
 class App extends Component {
 
-  componentDidMount() {
-  }
-
   render() {
     return <div className="App">
       <header className="App-header">
