@@ -18,7 +18,7 @@ export default function DogBreedsImages(props) {
 
   return <div>
     <h1>IMAGES DETAILS</h1>
-    <Link to="/">Go back to the index</Link>
+   <button><Link to="/dog-list">Go back to the index</Link></button> 
     {images}
     {}
   </div>
