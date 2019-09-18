@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import DogsListContainer from './components/DogsListContainer';
 import { Route } from 'react-router-dom'
+import DogBreedsImagesContainer from './components/DogBreedsImagesContainer';
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+
+  componentDidMount() {
+  }
+
+  render() {
+    return <div className="App">
       <header className="App-header">
-        <DogsListContainer />
-
-        <Route exact path="/dog-breeds/:breed" component={DogsListContainer} />
+        <Route exact path="/" component={DogsListContainer} />
+        <Route path="/dog-breeds/:breed" component={DogBreedsImagesContainer} />
       </header>
-    </div>
-  );
+    </div >
+  }
 }
 
 export default App
