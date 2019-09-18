@@ -8,10 +8,7 @@ import Game1 from './components/Game1'
 import Game2 from './components/Game2'
 import Game3 from './components/Game3'
 
-
 function App() {
-
-
   return <div className="App">
     <header className="App-header">
       <Router>
