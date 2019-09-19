@@ -18,8 +18,20 @@ export const getDogs = () => {
 
     request('https://dog.ceo/api/breeds/list/all')
       .then(data => {
-        const promises = Object.keys(data.body.message).map(dog => {
-          return request(`https://dog.ceo/api/breed/${encodeURIComponent(dog)}/images`)
+        const dogsObject = data.body.message
+        const allDogs = []
+        Object.keys(dogsObject).map(key => {
+          if (dogsObject[key].length === 0)
+            return allDogs.push(key)
+          else for (let i = 0; i < dogsObject[key].length; i++) {
+            allDogs.push(dogsObject[key][i] + '-' + key)
+          }
+          return ''
+        })
+
+        const promises = allDogs.map(dog => {
+          const search = dog.includes('-') ? dog.split('-')[1] + '/' + dog.split('-')[0] : dog
+          return request(`https://dog.ceo/api/breed/${search}/images`)
             .then(data => ({ breed: dog, images: data.body.message }))
         })
 
