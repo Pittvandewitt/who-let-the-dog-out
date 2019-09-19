@@ -1,34 +1,74 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDogs } from '../actions/SetDogObjects'
+import shuffle from '../actions/shuffle'
+import '../style/game1.css'
 
 class Game1 extends Component {
+  state = {
+    score: 0,
+    wrong: 0,
+    gameOver: false
+  }
   componentDidMount() {
     this.props.getDogs()
   }
- 
-  randomNumber(numm){
-    return Math.floor((Math.random() * numm.length))}
-   
-  render() {
-    this.randomNumber(this.props.breeds)
+  handleClick = (event) => {
+    if (event.target.name === 'correct') {
+      alert('Good your answer is correct')
+      this.setState({ score: this.state.score + 1 })
+    } else {
+      alert(' Sorry your answer is wrong')
+      this.setState({ wrong: this.state.wrong + 1 })
+      if (this.state.wrong === 4) {
+        alert('You got 5 answers wrong')
+        this.setState({ gameOver: true })
+      }
+    }
+  }
+  tryAgain = () => {
+    this.setState({ gameOver: false })
+    this.setState({ score: 0 })
+    this.setState({ wrong: 0 })
+  }
+
+  randomNumber(array) {
+    return Math.floor((Math.random() * array.length))
+  }
+  gameOver = () => {
+    return <div>
+      <h1 className="gameOverHeader">Game Over</h1>
+      <button className='gameOver-btn' onClick={this.tryAgain}>Try again</button>
+    </div>
+  }
+  game = () => {
     const breeds = this.props.breeds
-    /* بدال الخط الي تحت جيب الاوبجيكت كلها واختار الصوره والبريد مع بعض */
-    const dogBreeds = breeds.map(dog =>  <span>{dog.breed.charAt(0).toUpperCase()+ dog.breed.substring(1)}</span>)
-    const Images =  breeds.map(dog => dog.images[this.randomNumber(dog.images)])
-      console.log('random image',Images[this.randomNumber(Images)])
-      console.log('random image',Images[this.randomNumber(Images)])
-    const correctDog = dogBreeds[this.randomNumber(dogBreeds)]
+    const correctDog = breeds.length > 0 ? breeds[this.randomNumber(breeds)] : "Loading..."
+    const correctbreed = correctDog.breed !== undefined
+      ? correctDog.breed.charAt(0).toUpperCase() + correctDog.breed.substring(1) : "loading..."
+    const correctImage = correctDog.images !== undefined
+      ? correctDog.images[this.randomNumber(correctDog.images)] : "loading..."
+    const Images = breeds.map(dog => dog.images[this.randomNumber(dog.images)])
+    console.log('the dogbreedimg', correctImage)
+    console.log('the dogbreed', correctbreed)
+
+    const mix = [
+      <button key={1}><img onClick={this.handleClick} name={'wrong'} src={Images[this.randomNumber(Images)]} width="200px" alt="" /></button>,
+      <button key={2} ><img onClick={this.handleClick} name={"wrong"} src={Images[this.randomNumber(Images)]} width="200px" alt="" /></button>,
+      <button key={3}><img onClick={this.handleClick} name={'correct'} src={correctImage} width="200px" alt="" /></button>]
     return <div>
       <h1>Choose the correct image</h1>
-      <h3>Which image is {correctDog} breed?</h3>
-     
-      <img src={Images[this.randomNumber(Images)]} width="300px" alt=""/>
-      <img src={Images[this.randomNumber(Images)]} width="300px" alt=""/>
-      {/* <img src={correctDog.images[1]} width="300px" alt=""/> */}
-      
+      <h3 className="question">Which image is {correctbreed} breed?</h3>
+      {shuffle(mix)}
+      <h3 >Your Score is : {this.state.score}</h3>
+      <h3 >Your wrong answers : {this.state.wrong}</h3>
 
     </div>
+  }
+
+  render() {
+    return <div>{!this.state.gameOver ? this.game() : this.gameOver()
+    }</div>
   }
 }
 const mapStateToProps = (state) => {
@@ -38,16 +78,3 @@ const mapStateToProps = (state) => {
 }
 export default connect(mapStateToProps, { getDogs })(Game1)
 
-
-// const breeds = this.props.breeds
-//     const random = Math.floor((Math.random() * 87))
-//     const random2=Math.floor((Math.random() * 87))
-//     const randomBread= breeds[random]
-//     console.log(random)
-//     console.log('AAAA',breeds[random])
-//     return <div>
-//       <h1>Choose the right image</h1>
-//        <h2>Which image is {randomBread} breed? </h2>
-//        {console.log('IMAGES',this.props.images[random2])}
-//        <img src={this.props.images[random2]} alt=""/>
-//     </div>
