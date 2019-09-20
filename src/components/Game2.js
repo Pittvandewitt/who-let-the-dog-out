@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getDogs } from '../actions/SetDogObjects'
 import { getRandomDogObject, shuffle, calculateScore } from '../actions/gameFunctions'
 import Timer from "../components/Timer";
+import '../style/game1.css'
 
 class Game2 extends Component {
   state = {
@@ -68,7 +69,7 @@ class Game2 extends Component {
     if (!this.props.dogs.length > 0) return <div>Loading...</div>
     if (this.state.gameOver) return <div>
       <h2>Game Over! Better luck next time</h2>
-      <button onClick={this.tryAgain}>Try again</button>
+      <button className="gameOver-btn" onClick={this.tryAgain}>Try again</button>
     </div>
 
     const data = getRandomDogObject(this.props.dogs, this.state.level)

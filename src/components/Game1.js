@@ -61,7 +61,7 @@ class Game1 extends Component {
 
   gameOver = () => {
     return <div>
-      <h1 className="gameOverHeader">Game Over</h1>
+      <h1 className="gameOverHeader">Game Over! Better luck next time</h1>
       <button className='gameOver-btn' onClick={this.tryAgain}>Try again</button>
     </div>
   }

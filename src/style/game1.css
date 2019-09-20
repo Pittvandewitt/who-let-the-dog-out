@@ -16,7 +16,11 @@ img{
 
 }
 
-
+h2{
+  font-family: 'Courier New', Courier, monospace;
+  color: crimson;
+  box-shadow: 16px 9px 15px 3px crimson;
+}
 
 h1{
   font-family: 'Courier New', Courier, monospace;
@@ -70,6 +74,7 @@ h1{
 }
 
 li{
+	padding: 5px;
 	list-style: none;
 	color: red;
 	background-color: rgba(45, 91, 129,0.1);
@@ -87,8 +92,10 @@ li:hover{
 	background-color:#e6320e;
 }
 
-link{
-	color: black;
+li a{
+	color: rgb(82, 2, 10);
+	letter-spacing: 2px;
+	text-decoration: none;
 }
 .green{
 	border: 15px solid black;
