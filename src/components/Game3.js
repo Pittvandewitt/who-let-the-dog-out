@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import Game1 from './Game1'
+import Game2 from './Game2';
 
 class Game3 extends Component {
-  render(){
-    return <div>
-      <h1>Game3</h1>
-    </div>
+  state = {
+    score: 5
+  }
+
+  render() {
+    return this.state.score > 5 ? <div><Game1 /></div> : <div><Game2 /></div>
+
   }
 }
 
