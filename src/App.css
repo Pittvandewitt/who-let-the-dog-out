@@ -10,17 +10,35 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  /* height: 100vh; */
 }
 
 .App-link {
   color: #61dafb;
+}
+
+#components-btn{
+  position: absolute;;
+  top:0;
+  right: 0;
+  color:red;
+
+}
+.btn{
+  margin: 0.5rem;
+  background-color: #64718a;
+  border: 0.3rem solid black
+}
+.components-btn{
+  color:rgb(29, 29, 59);
+  font-size: 1.5em;
 }
 
 @keyframes App-logo-spin {
