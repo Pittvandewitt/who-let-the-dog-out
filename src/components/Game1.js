@@ -20,8 +20,8 @@ class Game1 extends Component {
     } else {
       alert(' Sorry your answer is wrong')
       this.setState({ wrong: this.state.wrong + 1 })
-      if (this.state.wrong === 4) {
-        alert('You got 5 answers wrong')
+      if (this.state.wrong === 2) {
+        alert('You got 3 answers wrong')
         this.setState({ gameOver: true })
       }
     }
