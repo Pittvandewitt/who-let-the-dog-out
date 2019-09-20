@@ -10,24 +10,24 @@ class Game3 extends Component {
   state = {
     urls: null,
     name: "",
-    gameOver: false,
+    thisGameOver: false,
     score: 0,
     level: 0,
     bool: false,
     badScore: 0,
     counter: 10
   };
-  update = (value) => {
-    return () => {
-       this.setState({
-         counter: value
-       });
-    }
-  }
+  // update = (value) => {
+  //   return () => {
+  //      this.setState({
+  //        gameOver: value
+  //      });
+  //   }
+  // }
   componentDidMount() {
     this.props.getDogs();
   }
-  reset = () => {
+  resetTimimg = () => {
     this.setState({
       bool: false
     });
@@ -36,16 +36,19 @@ class Game3 extends Component {
   handleClick = () => {
     const rand = Math.floor(Math.random() * 80);
     this.setState({
-      gameOver: false,
+      thisGameOver: false,
       urls: this.props.dogs[rand].images.slice(0, 3),
       name: this.props.dogs[rand].breed,
       bool: true
     });
-    //this.resetCounterOnTimer()
+    //this.startGame();
   };
 
   resetCounterOnTimer = () => {
-    return 10
+    return this.state.counter-5;
+  };
+  startGame = () => {
+    return false;
   };
 
   handleAnswer = event => {
@@ -77,9 +80,6 @@ class Game3 extends Component {
   };
 
   render() {
-    console.log(this.state.counter)
-    // let btnClass = classNames("button", "button--wayra", "button--border-thick", "button--text-upper", "button--size-s" )
-    // let btnClass2 = classNames("box", "bg-1")
     return (
       <div>
         <h3>Game3</h3>
@@ -89,13 +89,15 @@ class Game3 extends Component {
             ? `${this.state.level}:  it is too litle to move up to the next level`
             : "good"}
         </h4>
+        <h4>good score {this.state.score}</h4>
+        <h4>bad score {this.state.badScore}</h4>
         <h4>
           Time component counter:
           <Timer
             bool={this.state.bool}
-            reset={this.reset}
-            test={this.resetCounterOnTimer}
-            data={this.update}
+            resetTiming={this.resetTimimg}
+            resetCounterByClickOnParentBtns={this.resetCounterOnTimer}
+            startGame={this.startGame}
           />
         </h4>
 
@@ -103,7 +105,7 @@ class Game3 extends Component {
           <button onClick={this.handleClick}>Play</button>
         </div>
         <div className="image-container">
-          {this.state.gameOver
+          {this.state.thisGameOver
             ? "GAME OVER"
             : this.state.urls
             ? this.state.urls.map(url => <img key={url} src={url} />)

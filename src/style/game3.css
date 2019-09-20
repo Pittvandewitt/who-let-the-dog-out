@@ -2,7 +2,7 @@
     border:4px solid red;
     max-height: 100%;
     width: 30%;
-    animation: start 2s ease-in 0.2s 1 forwards;
+    animation: start 0.7s ease-in 0.2s 1 forwards;
     opacity: 0;
     height: auto
 }
