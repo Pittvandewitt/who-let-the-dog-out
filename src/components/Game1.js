@@ -19,10 +19,8 @@ class Game1 extends Component {
     if (event.target.name === 'correct') {
       alert('Good your answer is correct')
      this.setState({
-        score: this.state.score + 1
+        score: this.state.score + 1,
       })
-     const hideImageHint=document.querySelector('.show')
-     hideImageHint.className="hide"
       this.state.score === 4?alert('Good job you have 5 correct answers'): this.setState({
         score: this.state.score + 1
       })
@@ -30,8 +28,6 @@ class Game1 extends Component {
     } else {
       alert(' Sorry your answer is wrong')
       this.setState({ wrong: this.state.wrong + 1 })
-      const hideImageHint=document.querySelector('.show')
-      hideImageHint.className="hide"
       if (this.state.wrong === 2) {
         alert('You got 3 answers wrong')
         this.setState({ gameOver: true })
@@ -41,12 +37,6 @@ class Game1 extends Component {
   }
 
   getHint=(event)=>{
-    // if(!this.state.showHint){
-    //   this.setState({showHint:true})
-    // }else{
-    //   this.setState({showHint:false})
-    // }
-
     if(event.target.querySelector('img').className==="hide"){
        event.target.querySelector('img').className="show"
     }else{
@@ -78,7 +68,7 @@ class Game1 extends Component {
     const correctImage = correctDog.images !== undefined
       ? correctDog.images[this.randomNumber(correctDog.images)] : "loading..."
     const Images = breeds.map(dog => dog.images[this.randomNumber(dog.images)])
-
+    
     const mix = [
       <button key={1}><img onClick={this.handleClick} name={'wrong'} src={Images[this.randomNumber(Images)]} width="200px" alt="" /></button>,
       <button key={2} ><img onClick={this.handleClick} name={"wrong"} src={Images[this.randomNumber(Images)]} width="200px" alt="" /></button>,
@@ -91,7 +81,7 @@ class Game1 extends Component {
       {shuffle(mix)}
       <h3 >Your Score is : {this.state.score}</h3>
       <h3 >Your wrong answers : {this.state.wrong}</h3>
-      <button onClick={this.getHint}><img  className="hide" src={correctImage} width="200px" alt="" />Hint</button>
+      {/* <button onClick={this.getHint}><img  className="hide" src={correctImage} width="200px" alt="" />Hint</button> */}
     </div>
   }
 
