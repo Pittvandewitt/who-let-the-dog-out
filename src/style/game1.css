@@ -1,5 +1,7 @@
 button{
-  margin: 1rem;
+	margin: 1rem;
+	
+	
 }
 img{
   position: relative;
@@ -9,7 +11,8 @@ img{
   box-shadow: -23px -18px 35px 0px rgba(0,0,0,0.75);
   background-position: 50% 50%;
   background-repeat:   no-repeat;
-  background-size:     cover;
+	background-size:     cover;
+	
 
 }
 
@@ -64,4 +67,44 @@ h1{
   font-family: 'Courier New', Courier, monospace;
   color: crimson;
   box-shadow: 16px 0px 15px 0px crimson;
+}
+
+li{
+	list-style: none;
+	color: red;
+	background-color: rgba(45, 91, 129,0.1);
+	margin: 3px;
+	 box-shadow: 16px 9px 15px 3px crimson;
+}
+li:hover{
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e6320e), color-stop(1, #7a2f1b));
+	background:-moz-linear-gradient(top, #e6320e 5%, #7a2f1b 100%);
+	background:-webkit-linear-gradient(top, #e6320e 5%, #7a2f1b 100%);
+	background:-o-linear-gradient(top, #e6320e 5%, #7a2f1b 100%);
+	background:-ms-linear-gradient(top, #e6320e 5%, #7a2f1b 100%);
+	background:linear-gradient(to bottom, #e6320e 5%, #7a2f1b 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6320e', endColorstr='#7a2f1b',GradientType=0);
+	background-color:#e6320e;
+}
+
+link{
+	color: black;
+}
+.green{
+	border: 15px solid black;
+}
+
+.red{
+	border: 15px solid red;
+
+}
+.hide{
+	display: none
+}
+
+.show{
+	filter: blur(8px);
+	border: 6px solid black;
+	width:  100px;
+  height: 100px;
 }
