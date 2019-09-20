@@ -12,7 +12,7 @@ function App() {
   return <div className="App">
     <header className="App-header">
       <Router>
-        <div>
+        <div id= "nav">
           <nav id="components-btn">
             <button className="btn" ><Link className="components-btn" to="/">Home</Link></button>
             <button className="btn" ><Link className="components-btn" to="/dog-list/">Dog List</Link></button>

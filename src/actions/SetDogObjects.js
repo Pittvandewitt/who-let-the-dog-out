@@ -14,7 +14,7 @@ function SetDogsObjects(dogData) {
 export const getDogs = () => {
   return (dispatch, getState) => {
     const dogsList = getState()
-    if (dogsList.length !== 0) return
+    if (dogsList.length > 0) return
 
     request('https://dog.ceo/api/breeds/list/all')
       .then(data => {

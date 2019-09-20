@@ -21,6 +21,7 @@ class Game1 extends Component {
     if (event.target.name === 'correct') {
       alert('Good your answer is correct')
       this.setState({ score: this.state.score + 1, activateTimer: true })
+      this.props.updateScore && this.props.updateScore()
     } else {
       alert('Sorry your answer is wrong')
       setTimeout(this.nextQuestion, 2000)

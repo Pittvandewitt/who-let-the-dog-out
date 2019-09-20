@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import Game1 from './Game1'
 import Game2 from './Game2';
+import { connect } from 'react-redux'
 
 class Game3 extends Component {
   state = {
-    score: 5
+    score: 0
   }
 
-  render() {
-    return this.state.score > 5 ? <div><Game1 /></div> : <div><Game2 /></div>
+  updateScore = () => {
+    this.setState({
+      score: this.state.score + 1
+    });
+  };
 
+  render() {
+    return this.state.score > 5 ? <div><Game1 updateScore={this.updateScore} /></div> : <div><Game2 updateScore={this.updateScore} /></div>
   }
 }
 
-export default (Game3)
+const mapStateToProps = (state) => {
+  return { score: state }
+}
+
+export default connect(mapStateToProps)(Game3)
