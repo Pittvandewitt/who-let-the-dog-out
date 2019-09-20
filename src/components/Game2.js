@@ -22,6 +22,7 @@ class Game2 extends Component {
   verifyAnswer = (event) => {
     if (event.target.name === 'correct') {
       const updateScore = this.state.score % 5 === 1 ? 1 : 0
+      this.props.updateScore && this.props.updateScore()
       this.setState({
         score: this.state.score + 1,
         level: this.state.level + updateScore,
@@ -32,6 +33,8 @@ class Game2 extends Component {
       setTimeout(this.nextQuestion(), 2000)
     }
   }
+
+  // store.dispatch({})
 
   nextQuestion = () => {
     this.setState({
@@ -92,7 +95,6 @@ class Game2 extends Component {
   }
 
 }
-
 
 const mapStateToProps = (state) => {
   return { dogs: state }
