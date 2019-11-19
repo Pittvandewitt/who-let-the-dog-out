@@ -15,7 +15,7 @@ class Game3 extends Component {
   };
 
   render() {
-    return this.state.score > 5 ? <div><Game1 updateScore={this.updateScore} /></div> : <div><Game2 updateScore={this.updateScore} /></div>
+    return this.state.score % 2 === 0 ? <div><Game1 updateScore={this.updateScore} /></div> : <div><Game2 updateScore={this.updateScore} /></div>
   }
 }
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getDogs } from '../actions/SetDogObjects'
 import { getRandomDogObject, shuffle, calculateScore } from '../actions/gameFunctions'
 import Timer from "../components/Timer";
-import '../style/game1.css'
+import '../style/game3.css'
 
 class Game1 extends Component {
   state = {
